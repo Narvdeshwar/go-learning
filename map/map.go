@@ -23,4 +23,7 @@ func main() {
 		fmt.Println("current value doesn't exits", val)
 	}
 
+	delete(m, "bob")
+	fmt.Println(m)
+
 }
