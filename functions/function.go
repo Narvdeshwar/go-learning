@@ -37,6 +37,11 @@ func apply(fb func(int, int) int, a, b int) int {
 	return fb(a, b)
 }
 
+func process() {
+	defer fmt.Println("Clean will be done in last")
+	fmt.Println("process start")
+}
+
 func main() {
 	greet()
 	// fmt.Println(total(3, 4, 5), total1(1, 2))
@@ -52,5 +57,5 @@ func main() {
 	}
 	fmt.Println("Adding", apply(add, 3, 4))
 	fmt.Println("Adding", apply(multi, 5, 6))
-
+	process()
 }
