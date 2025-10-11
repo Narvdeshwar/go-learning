@@ -17,18 +17,40 @@ func total(a, b, c int) int {
 	return a + b + c
 }
 
-// passing argurment as a function
-func passIt(fn func(a int)) {
+// Multiple return values
+func divide(a, b int) (int, error) {
+	if b == 0 {
+		return 0, fmt.Errorf("division with zero")
+	}
+	return a / b, nil
+}
 
+// Named return values
+func reactangle(a, b int) (area int, perimeter int) {
+	area = a * b
+	perimeter = 2 * (a + b)
+	return // implicit return
+}
+
+// first class and higher order funcion
+func apply(fb func(int, int) int, a, b int) int {
+	return fb(a, b)
 }
 
 func main() {
 	greet()
-	fmt.Println(total(3, 4, 5), total1(1, 2))
-	fn := func(){
-		fmt.Println("Hi i will be passed into the function")
-	}
-	passIt(fn())
+	// fmt.Println(total(3, 4, 5), total1(1, 2))
+	// fmt.Println(divide(1, 1))
+	area, perimeter := reactangle(2, 3)
+	fmt.Println("area", area, "perimeter", perimeter)
 
-	
+	add := func(a, b int) int {
+		return a + b
+	}
+	multi := func(a, b int) int {
+		return a * b
+	}
+	fmt.Println("Adding", apply(add, 3, 4))
+	fmt.Println("Adding", apply(multi, 5, 6))
+
 }
