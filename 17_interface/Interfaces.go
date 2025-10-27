@@ -2,32 +2,30 @@ package main
 
 import "fmt"
 
-type Shape interface {
-	Area() float32
+type Reader interface {
+	Read()
 }
-type Circle struct {
-	radius float32
-}
-
-func (c Circle) Area() float32 {
-	return 2 * 3.14 * c.radius
+type Writer interface {
+	Write()
 }
 
-type Rectangle struct {
-	length, breadth float32
+type ReadWrite interface {
+	Reader
+	Writer
 }
 
-func (r Rectangle) Area() float32 {
-	return r.length * r.breadth
+type File struct{}
+
+func (f File) Read() {
+	fmt.Println("Reading the File")
 }
 
-func printArea(s Shape) {
-	fmt.Println("Area : ", s.Area())
+func (f File) Write() {
+	fmt.Println("Writing the File")
 }
 
 func main() {
-	newCircle := Circle{23}
-	printArea(newCircle)
-	newRectangle := Rectangle{2, 4}
-	printArea(newRectangle)
+	newFile := File{}
+	newFile.Read()
+	newFile.Write()
 }
