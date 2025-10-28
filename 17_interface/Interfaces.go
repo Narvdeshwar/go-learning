@@ -16,16 +16,16 @@ type ReadWrite interface {
 
 type File struct{}
 
-func (f File) Read() {
+func (File) Read() {
 	fmt.Println("Reading the File")
 }
 
-func (f File) Write() {
+func (File) Write() {
 	fmt.Println("Writing the File")
 }
 
 func main() {
-	newFile := File{}
-	newFile.Read()
-	newFile.Write()
+	var rw ReadWrite = File{}
+	rw.Read()
+	rw.Write()
 }
